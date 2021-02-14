@@ -1,123 +1,152 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <title>html5 canvas带音效新年烟花动画特效</title>
+<title>彩色粒子烟花HTML5特效 - 站长素材</title>
 
-    <link href="css/demo.css" rel="stylesheet" media="all" />
+<style>
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, .9);overflow: hidden;
+}
+</style>
 
-    <!--[if IE]>
-
-    <style type="text/css">
-        li.remove_frame a {
-            padding-top: 5px;
-            background-position: 0px -3px;
-        }
-    </style>
-
-    <![endif]-->
-
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            function fixHeight() {
-                var headerHeight = $("#switcher").height();
-                $("#iframe").attr("height", $(window).height()-54+ "px");
-            }
-            $(window).resize(function () {
-                fixHeight();
-            }).resize();
-
-            $('.icon-monitor').addClass('active');
-
-            $(".icon-mobile-3").click(function () {
-                $("#by").css("overflow-y", "auto");
-                $('#iframe-wrap').removeClass().addClass('mobile-width-3');
-                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-                $(this).addClass('active');
-                return false;
-            });
-
-            $(".icon-mobile-2").click(function () {
-                $("#by").css("overflow-y", "auto");
-                $('#iframe-wrap').removeClass().addClass('mobile-width-2');
-                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-                $(this).addClass('active');
-                return false;
-            });
-
-            $(".icon-mobile-1").click(function () {
-                $("#by").css("overflow-y", "auto");
-                $('#iframe-wrap').removeClass().addClass('mobile-width');
-                $('.icon-tablet,.icon-mobile,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-                $(this).addClass('active');
-                return false;
-            });
-
-            $(".icon-tablet").click(function () {
-                $("#by").css("overflow-y", "auto");
-                $('#iframe-wrap').removeClass().addClass('tablet-width');
-                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-                $(this).addClass('active');
-                return false;
-            });
-
-            $(".icon-monitor").click(function () {
-                $("#by").css("overflow-y", "hidden");
-                $('#iframe-wrap').removeClass().addClass('full-width');
-                $('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-                $(this).addClass('active');
-                return false;
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-	function Responsive($a) {
-		if ($a == true) $("#Device").css("opacity", "100");
-		if ($a == false) $("#Device").css("opacity", "0");
-		$('#iframe-wrap').removeClass().addClass('full-width');
-		$('.icon-tablet,.icon-mobile-1,.icon-monitor,.icon-mobile-2,.icon-mobile-3').removeClass('active');
-		$(this).addClass('active');
-		return false;
-	};
-    </script>
-	
-	
-	
 </head>
-<body id="by">
+<body>
 
-<div id="switcher">
-    <div class="center">
-        <ul>
-            <div id="Device">
-                <li class="device-monitor"><a href="javascript:"><div class="icon-monitor"></div></a></li>
-                <li class="device-mobile"><a href="javascript:"><div class="icon-tablet"></div></a></li>
-                <li class="device-mobile"><a href="javascript:"><div class="icon-mobile-1"></div></a></li>
-                <li class="device-mobile-2"><a href="javascript:"><div class="icon-mobile-2"></div></a></li>
-                <li class="device-mobile-3"><a href="javascript:"><div class="icon-mobile-3"></div></a></li>
-            </div>
-            <li class="top2">
-                <a href="#">手机二维码预览</a>
-                <div class="vm">
-                    <div id="output"></div>
-                    <p style="color:#808080;margin:10px 0 0 0;">扫一扫，直接在手机上打开</p>
-                </div>
-            </li>
-            <li class="logoTop">
-                <a href="https://www.17sucai.com/pins/28047.html">html5 canvas带音效新年烟花动画特效</a>            <script type="text/javascript">
-                jQuery('#output').qrcode({width:150,height: 150,text: window.location.href});
-            </script>
-            <li class="remove_frame"><a href="https://www.17sucai.com/preview/945243/2018-02-15/firework/index.html" title="移除框架"></a></li>
-        </ul>
-    </div>
-</div>
+<script src="js/p5.min.js"></script>
+<script>
+const createParticle = (x, y, hu, firework) => {
+  const pos = createVector(x, y);
+  let vel
+  if (firework) {
+    vel = createVector(0, random(-12, -8)); 
+  } else {
+    vel = p5.Vector.random2D();
+    vel.mult(random(2, 10));
+  }
+  const acc = createVector(0, 0);
+  let lifespan = 505;
+  
+  const applyForce = (force) => {
+    acc.add(force);
+  };
+  
+  const show = () => {
+    if (!firework) {
+      strokeWeight(2); 
+      stroke(hu, 255, 255, lifespan);
+    } else {
+      strokeWeight(4);
+      stroke(hu, 255, 255); 
+    }
+    point(pos.x, pos.y);
+  };
+  
+  const update = () => {
+    if (!firework) {
+      vel.mult(0.9);
+      lifespan -= 4;
+    }
+    vel.add(acc);
+    pos.add(vel);
+    acc.mult(0);
+  };
+  
+  const done = () => {
+    return lifespan < 0;
+  }; 
+  
+  return {
+    update,
+    show,
+    applyForce,
+    vel,
+    pos,
+    done
+  }
+};
 
+const createFirework = () => {
+  const hu = random(255);
+  const firework = createParticle(random(width), height, hu, true);
+  let exploded = false;
+  const particles = [];
+  
+  const explode = () => {
+    for (let i = 0; i < 100; i++) {
+      let p = createParticle(firework.pos.x, firework.pos.y, hu, false);
+       particles.push(p);
+    }
+  };
+  
+  const done = () => {
+    return exploded && particles.length <= 0; 
+  }; 
+  
+  const update = () => {
+    if (!exploded) {
+      firework.applyForce(gravity);
+      firework.update();
+      if (firework.vel.y >= 0) {
+          exploded = true;
+          explode();
+      }
+    } else {
+       particles.forEach((particle, i) => {
+         particle.applyForce(gravity); 
+         particle.update();
+         if(particle.done()) {
+           particles.splice(i, 1);
+         }
+      });
+    }
+  };
+  
+  const show = () => {
+    if (!exploded) {
+      firework.show();
+    }
+   particles.forEach(particle => {
+      particle.show();
+    });
+  };
+  
+  return {
+    update,
+    show,
+    done
+  };
+};
 
+let fireworks = [];
+let gravity;
 
+function setup() {
+  createCanvas(1200, 700);
+  colorMode(HSB, 255, 255, 255, 255);
+  gravity = createVector(0, 0.2);
+  background(0, 0, 0);
+}
+
+function draw() {
+  background(0, 0, 0, 25);
+  if (random(1) < 0.03) {
+     fireworks.push(createFirework());  
+  }
+  fireworks.forEach((firework, i) => {
+    firework.update();
+    firework.show();
+    if (firework.done()) {
+      fireworks.splice(i, 1)
+    }
+  });
+}
+</script>
 
 </body>
 </html>
-
