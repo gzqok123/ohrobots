@@ -23,7 +23,7 @@
 
 		$(fireworksField).append(canvas);
 		document.onmousemove = mouseMove;
-		setInterval(launch, 2000);
+		setInterval(launch, 1000);
 		//setInterval(loop, 20);
 		raf = window.requestAnimationFrame(loop);
 
