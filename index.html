@@ -1,152 +1,35 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>彩色粒子烟花HTML5特效 - 站长素材</title>
+<meta charset="UTF-8">
+<title>HTML5 Canvas五彩烟花动画特效 - 站长素材</title>
 
 <style>
-body {
-  width: 100vw;
-  height: 30vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(0, 0, 0, .9);overflow: hidden;
+*{
+	padding: 0;
+	margin: 0;
 }
 </style>
 
 </head>
-<body style="background:#000">
+<body>
 
-<script src="js/p5.min.js"></script>
-<script>
-const createParticle = (x, y, hu, firework) => {
-  const pos = createVector(x, y);
-  let vel
-  if (firework) {
-    vel = createVector(0, random(-12, -8)); 
-  } else {
-    vel = p5.Vector.random2D();
-    vel.mult(random(2, 10));
-  }
-  const acc = createVector(0, 0);
-  let lifespan = 505;
-  
-  const applyForce = (force) => {
-    acc.add(force);
-  };
-  
-  const show = () => {
-    if (!firework) {
-      strokeWeight(2); 
-      stroke(hu, 255, 255, lifespan);
-    } else {
-      strokeWeight(4);
-      stroke(hu, 255, 255); 
-    }
-    point(pos.x, pos.y);
-  };
-  
-  const update = () => {
-    if (!firework) {
-      vel.mult(0.9);
-      lifespan -= 4;
-    }
-    vel.add(acc);
-    pos.add(vel);
-    acc.mult(0);
-  };
-  
-  const done = () => {
-    return lifespan < 0;
-  }; 
-  
-  return {
-    update,
-    show,
-    applyForce,
-    vel,
-    pos,
-    done
-  }
-};
+<div id="example"></div>
 
-const createFirework = () => {
-  const hu = random(255);
-  const firework = createParticle(random(width), height, hu, true);
-  let exploded = false;
-  const particles = [];
-  
-  const explode = () => {
-    for (let i = 0; i < 100; i++) {
-      let p = createParticle(firework.pos.x, firework.pos.y, hu, false);
-       particles.push(p);
-    }
-  };
-  
-  const done = () => {
-    return exploded && particles.length <= 0; 
-  }; 
-  
-  const update = () => {
-    if (!exploded) {
-      firework.applyForce(gravity);
-      firework.update();
-      if (firework.vel.y >= 0) {
-          exploded = true;
-          explode();
-      }
-    } else {
-       particles.forEach((particle, i) => {
-         particle.applyForce(gravity); 
-         particle.update();
-         if(particle.done()) {
-           particles.splice(i, 1);
-         }
-      });
-    }
-  };
-  
-  const show = () => {
-    if (!exploded) {
-      firework.show();
-    }
-   particles.forEach(particle => {
-      particle.show();
-    });
-  };
-  
-  return {
-    update,
-    show,
-    done
-  };
-};
-
-let fireworks = [];
-let gravity;
-
-function setup() {
-  createCanvas(1200, 2000);
-  colorMode(HSB, 255, 255, 255, 255);
-  gravity = createVector(0, 0.2);
-  background(0, 0, 0);
-}
-
-function draw() {
-  background(0, 0, 0, 25);
-  if (random(1) < 0.03) {
-     fireworks.push(createFirework());  
-  }
-  fireworks.forEach((firework, i) => {
-    firework.update();
-    firework.show();
-    if (firework.done()) {
-      fireworks.splice(i, 1)
-    }
-  });
-}
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/firework.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#example").fireworks({
+			width: "100%",
+			height: "100%"
+		});
+	});
 </script>
 
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Opera、傲游、搜狗、世界之窗. 不支持Safari、IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
 </body>
 </html>
