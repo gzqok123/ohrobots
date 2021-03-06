@@ -16,6 +16,8 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
 .videolist:hover{ cursor: pointer; }
 .videoed { display:none; width:80px; height:80px; position: absolute; top:0; z-index:99; border-radius:100%; }
 .videos{ width:100%;height:420px;z-index:100;bottom:40%;position:fixed;text-align:center;}
+/*大于1024*/	
+	@media (min-width:1024px){#company{display:hidden;#field{display:hidden;}}}
 </style>
 </head>
 <body>
@@ -27,9 +29,9 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
      <font style="color:#F775FB;">import  python</font><br>
      <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"Python是人工智能时代的语言！"</font><font style="color:#5CFC5C;">)</font><br>
 	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"Python简单易学适合8岁以上孩子学习，是培养思维最好的方式！"</font><font style="color:#5CFC5C;">)</font><br>
-	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"国外Google、Youtube、Facebook、Dropbox，国内百度、新浪、搜狐、腾讯、阿里、网易、淘宝、知乎、豆瓣、美团、华为等公司都在用Python！"</font><font style="color:#5CFC5C;">)</font>
+	 <font id="company" style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"国外Google、Youtube、Facebook、Dropbox，国内百度、新浪、搜狐、腾讯、阿里、网易、淘宝、知乎、豆瓣、美团、华为等公司都在用Python！"</font><font style="color:#5CFC5C;">)</font>
 </div>
-<div style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
+<div id="field" style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
      <div style="font-size:50px;text-align:center;width:100%">Pyton可以用在哪些领域</div>
 	 <table style=";text-align:center;color:40px;line-height:80px;width:100%;font-size:40px;margin-top:20px;border-collapse:separate; border-spacing:10px;">
 	    <tr>
