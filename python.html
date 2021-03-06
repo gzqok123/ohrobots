@@ -2,22 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Python介绍—欧耶少儿编程</title>
+
 <style>
 body {padding: 0px;margin: 0px;background-color: #252525;}
 .hidden {display: none;}
 #spring-text {position: absolute;}
 /*视频播放样式*/
 .video{position:absolute;right:5%;bottom:30px;}
-.vclose {bottom:1px;left:50%; border-radius:100%; cursor: pointer; z-index:2000; }
-	
-.videolist {  width:60px; height:60px;  margin-bottom:30px; }
-.videolist:hover{ cursor: pointer; }
-.videoed { display:none; width:80px; height:80px; position: absolute; top:0; z-index:99; border-radius:100%; }
-.videos{ width:100%;height:420px;z-index:100;bottom:40%;position:fixed;text-align:center;}
-/*大于1024*/	
-@media (min-width:1024px){#company{display:none;}#field{display:none;}}}
+	.videolist {  width:60px; height:60px;  margin-bottom:30px; }
+	.videolist:hover{ cursor: pointer; }
+	.videoed { display:none; width:80px; height:80px; position: absolute; top:0; z-index:99; border-radius:100%; }
+	.videos{ width:100%;height:420px;z-index:100;bottom:40%;position:fixed;text-align:center;}
+	.vclose {bottom:1px;left:50%; border-radius:100%; cursor: pointer; z-index:2000; }
 </style>
 </head>
 <body>
@@ -29,9 +26,9 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
      <font style="color:#F775FB;">import  python</font><br>
      <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"Python是人工智能时代的语言！"</font><font style="color:#5CFC5C;">)</font><br>
 	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"Python简单易学适合8岁以上孩子学习，是培养思维最好的方式！"</font><font style="color:#5CFC5C;">)</font><br>
-	 <font id="company" style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"国外Google、Youtube、Facebook、Dropbox，国内百度、新浪、搜狐、腾讯、阿里、网易、淘宝、知乎、豆瓣、美团、华为等公司都在用Python！"</font><font style="color:#5CFC5C;">)</font>
+	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"国外Google、Youtube、Facebook、Dropbox，国内百度、新浪、搜狐、腾讯、阿里、网易、淘宝、知乎、豆瓣、美团、华为等公司都在用Python！"</font><font style="color:#5CFC5C;">)</font>
 </div>
-<div id="field" style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
+<div style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
      <div style="font-size:50px;text-align:center;width:100%">Pyton可以用在哪些领域</div>
 	 <table style=";text-align:center;color:40px;line-height:80px;width:100%;font-size:40px;margin-top:20px;border-collapse:separate; border-spacing:10px;">
 	    <tr>
@@ -51,11 +48,10 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
 		</tr>
 	 </table>
 </div>
-<div style="width:120px;height:60px;font-size:40px;position:fixed;bottom:30px;left:5%;color:#f8f8f8;">教程</div>
 <!--开始视频播放功能-->
 	<div class="video">
 		<div class="container">
-			<div class="videolist" vpath="img/v1.jpg" ipath="%E7%BE%8E%E5%9B%BD%E8%AE%B2%E7%BC%96%E7%A8%8B%20(4).mp4">
+			<div class="videolist" vpath="img/v1.jpg" ipath="https://blz-videos.nosdn.127.net/1/OverWatch/OVR-S03_E03_McCree_REUNION_zhCN_1080P_mb78.mp4">
 				<img src="img/play.png" width="80px" height="80px" />
 				<img src="img/play.png" class="videoed"/>
 			</div>
@@ -312,7 +308,7 @@ init();
             $(this).click(function(){ //这个视频被点击后执行
                 var img = $(this).attr('vpath');//获取视频预览图
                 var video = $(this).attr('ipath');//获取视频路径
-                $('.videos').html("<video id=\"video\" poster='"+img+"' style='width:100%;height:420px;margin:0 auto;' src='"+video+"' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video><img onClick=\"close1()\" class=\"vclose\" src=\"img\\gb.png\" width=\"60\" height=\"60\"/>");
+                $('.videos').html("<video id=\"video\" poster='"+img+"' style='width:100%;height:360px;margin:0 auto;' src='"+video+"' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video><img onClick=\"close1()\" class=\"vclose\" src=\"img\\gb.png\" width=\"60\" height=\"60\"/>");
                 $('.videos').show();
             });
         });
