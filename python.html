@@ -15,6 +15,7 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
 	.videoed { display:none; width:80px; height:80px; position: absolute; top:0; z-index:99; border-radius:100%; }
 	.videos{ width:100%;height:420px;z-index:100;bottom:40%;position:fixed;text-align:center;}
 	.vclose {bottom:1px;left:50%; border-radius:100%; cursor: pointer; z-index:2000; }
+	@media only screen and (min-width: 1024px) {#fields{display:none;}  }
 </style>
 </head>
 <body>
@@ -28,7 +29,7 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
 	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"Python简单易学适合8岁以上孩子学习，是培养思维最好的方式！"</font><font style="color:#5CFC5C;">)</font><br>
 	 <font style="color:#5CFC5C;">print(</font><font style="color:#05EAFB;">"国外Google、Youtube、Facebook、Dropbox，国内百度、新浪、搜狐、腾讯、阿里、网易、淘宝、知乎、豆瓣、美团、华为等公司都在用Python！"</font><font style="color:#5CFC5C;">)</font>
 </div>
-<div style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
+<div id="fields" style="width:90%;position:fixed; bottom:100px;left:5%;right:5%; color:#05EAFB;">
      <div style="font-size:50px;text-align:center;width:100%">Pyton可以用在哪些领域</div>
 	 <table style=";text-align:center;color:40px;line-height:80px;width:100%;font-size:40px;margin-top:20px;border-collapse:separate; border-spacing:10px;">
 	    <tr>
@@ -48,6 +49,7 @@ body {padding: 0px;margin: 0px;background-color: #252525;}
 		</tr>
 	 </table>
 </div>
+<div style="color:#fff;font-size:40px;width:120px;height:60px;position:fixed;bottom:30px;left:5%">教程</div>
 <!--开始视频播放功能-->
 	<div class="video">
 		<div class="container">
